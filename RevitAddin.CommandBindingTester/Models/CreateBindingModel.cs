@@ -1,32 +1,68 @@
 ﻿using Autodesk.Revit.UI;
+using PropertyChanged;
 using System;
 
 namespace RevitAddin.CommandBindingTester.Models
 {
+    public enum CanExecuteCommand
+    {
+        None,
+        Always,
+        Never,
+        WhenDocument,
+        WhenFamily,
+    }
+
+    public enum BeforeExecutedCommand
+    {
+        None,
+        ShowMessage,
+        ThrowException,
+        Cancel,
+    }
+
+    public enum ExecutedCommand
+    {
+        None,
+        ShowMessage,
+        ThrowException,
+    }
+
+    [AddINotifyPropertyChangedInterface]
     public class CreateBindingModel
     {
-        public string Name { get; internal set; }
-        public uint Id { get; internal set; }
-        public PostableCommand PostableCommand { get; internal set; }
-        public bool CanHaveBinding { get; internal set; }
-        public bool HasBinding { get; internal set; }
+        [AlsoNotifyFor(nameof(Name), nameof(Id))]
+        public PostableCommand PostableCommand { get; set; }
+        public string Name => GetName();
+        public uint Id => GetId();
 
-        override public string ToString()
+        public CanExecuteCommand CanExecute { get; set; }
+        public BeforeExecutedCommand BeforeExecuted { get; set; }
+        public ExecutedCommand Executed { get; set; }
+
+        private string GetName()
         {
-            return $"{Name} ({Id}) - CanHaveBinding: {CanHaveBinding}, HasBinding: {HasBinding}";
+            try
+            {
+                var revitCommandId = RevitCommandId.LookupPostableCommandId(PostableCommand);
+                return revitCommandId.Name;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
-        public static BindingModel Create(PostableCommand postableCommand)
+        private uint GetId()
         {
-            var revitCommandId = RevitCommandId.LookupPostableCommandId(postableCommand);
-            return new BindingModel()
+            try
             {
-                Name = revitCommandId.Name,
-                Id = revitCommandId.Id,
-                PostableCommand = postableCommand,
-                CanHaveBinding = revitCommandId.CanHaveBinding,
-                HasBinding = revitCommandId.HasBinding
-            };
+                return RevitCommandId.LookupPostableCommandId(PostableCommand).Id;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 }

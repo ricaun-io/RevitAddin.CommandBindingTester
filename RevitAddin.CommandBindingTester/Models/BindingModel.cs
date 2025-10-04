@@ -5,9 +5,9 @@ namespace RevitAddin.CommandBindingTester.Models
 {
     public class BindingModel
     {
+        public PostableCommand PostableCommand { get; internal set; }
         public string Name { get; internal set; }
         public uint Id { get; internal set; }
-        public PostableCommand PostableCommand { get; internal set; }
         public bool CanHaveBinding { get; internal set; }
         public bool HasBinding { get; internal set; }
 

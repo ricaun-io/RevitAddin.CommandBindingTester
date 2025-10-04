@@ -9,6 +9,7 @@ namespace RevitAddin.CommandBindingTester.Views
         {
             InitializeComponent();
             InitializeWindow();
+            dataGrid.UpdateDataGridStyle();
         }
 
         #region InitializeWindow

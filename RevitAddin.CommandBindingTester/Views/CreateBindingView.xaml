@@ -11,15 +11,7 @@
 	>
 
     <StackPanel Margin="15">
-        <ListBox Height="160" Width="260" Margin="0 0 0 8" ItemsSource="{Binding Models}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <DataGrid Name="dataGrid" Height="560" Width="900" Margin="0 0 0 8" ItemsSource="{Binding Models}" />
         <Button Height="24" Command="{Binding Command}">Click Me!</Button>
     </StackPanel>
 </Window>

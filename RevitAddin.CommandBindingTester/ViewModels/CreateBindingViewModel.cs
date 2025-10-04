@@ -53,7 +53,7 @@ namespace RevitAddin.CommandBindingTester.ViewModels
         #region Private Methods
         private void AddModel()
         {
-            Models.Add(new CreateBindingModel() { Name = $"{Guid.NewGuid()}" });
+            Models.Add(new CreateBindingModel());
         }
         #endregion
     }
