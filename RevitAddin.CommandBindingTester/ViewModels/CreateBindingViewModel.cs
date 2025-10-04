@@ -49,17 +49,25 @@ namespace RevitAddin.CommandBindingTester.ViewModels
             Models.Add(new CreateBindingModel()
             {
                 PostableCommand = PostableCommand.ThinLines,
-                CanExecute = CanExecuteCommand.WhenFamily,
+                CanExecute = CanExecuteCommand.WhenDocument,
                 BeforeExecuted = BeforeExecutedCommand.None,
-                Executed = ExecutedCommand.TransactionAuthor,
+                Executed = ExecutedCommand.TransactionView,
             });
             Models.Add(new CreateBindingModel()
             {
                 PostableCommand = PostableCommand.ThinLines,
-                CanExecute = CanExecuteCommand.WhenDocument,
+                CanExecute = CanExecuteCommand.WhenFamily,
                 BeforeExecuted = BeforeExecutedCommand.None,
+                Executed = ExecutedCommand.TransactionView,
+            });
+            Models.Add(new CreateBindingModel()
+            {
+                PostableCommand = PostableCommand.ThinLines,
+                CanExecute = CanExecuteCommand.None,
+                BeforeExecuted = BeforeExecutedCommand.ShowMessage,
                 Executed = ExecutedCommand.TransactionAuthor,
             });
+            
         }
         #endregion
 

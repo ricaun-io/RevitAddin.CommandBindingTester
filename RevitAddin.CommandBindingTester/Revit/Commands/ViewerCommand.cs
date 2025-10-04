@@ -8,7 +8,7 @@ using System.Linq;
 namespace RevitAddin.CommandBindingTester.Revit.Commands
 {
     [Transaction(TransactionMode.Manual)]
-    public class ViewerCommand : IExternalCommand
+    public class ViewerCommand : IExternalCommand, IExternalCommandAvailability
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
@@ -28,6 +28,11 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
             var result = viewModel.ShowDialog();
 
             return Result.Succeeded;
+        }
+
+        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
+        {
+            return true;
         }
     }
 }

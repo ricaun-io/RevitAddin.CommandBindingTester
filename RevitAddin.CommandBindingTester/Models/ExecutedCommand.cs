@@ -6,5 +6,6 @@
         ShowMessage,
         ThrowException,
         TransactionAuthor,
+        TransactionView,
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 namespace RevitAddin.CommandBindingTester.Revit.Commands
 {
     [Transaction(TransactionMode.Manual)]
-    public class CreateCommand : IExternalCommand
+    public class CreateCommand : IExternalCommand, IExternalCommandAvailability
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
@@ -71,6 +71,13 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
                         e.CanExecute = doc?.IsFamilyDocument == true;
                     };
                     break;
+                case Models.CanExecuteCommand.WhenNotFamily:
+                    addInCommandBinding.CanExecute += (s, e) =>
+                    {
+                        var doc = uiapp.ActiveUIDocument?.Document;
+                        e.CanExecute = doc?.IsFamilyDocument == false;
+                    };
+                    break;
             }
 
             switch (model.BeforeExecuted)
@@ -124,7 +131,31 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
                         }
                     };
                     break;
+                case Models.ExecutedCommand.TransactionView:
+                    addInCommandBinding.Executed += (s, e) =>
+                    {
+                        var uiapp = s as UIApplication;
+                        if (uiapp?.ActiveUIDocument is null)
+                            return;
+                        var document = uiapp.ActiveUIDocument.Document;
+                        View3D view3d = null;
+                        using (var transaction = new Transaction(document, "Create View 3D"))
+                        {
+                            transaction.Start();
+                            view3d = View3D.CreateIsometric(document, document.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D));
+                            transaction.Commit();
+                        }
+
+                        if (view3d is not null)
+                            uiapp.ActiveUIDocument.ActiveView = view3d;
+                    };
+                    break;
             }
+        }
+
+        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
+        {
+            return true;
         }
     }
 }

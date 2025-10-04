@@ -7,5 +7,6 @@
         Never,
         WhenDocument,
         WhenFamily,
+        WhenNotFamily,
     }
 }
