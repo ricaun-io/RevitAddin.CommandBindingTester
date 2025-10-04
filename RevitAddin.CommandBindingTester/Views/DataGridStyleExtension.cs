@@ -45,25 +45,23 @@ namespace RevitAddin.CommandBindingTester.Views
 
                 if (column is DataGridTextColumn dataGridTextColumn)
                 {
-                    var style = new Style(typeof(TextBlock));
+                    var style = new Style(typeof(TextBlock), dataGridTextColumn.ElementStyle);
                     style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
                     dataGridTextColumn.ElementStyle = style;
                 }
                 else if (column is DataGridCheckBoxColumn dataGridCheckBoxColumn)
                 {
                     var style = new Style(typeof(CheckBox), dataGridCheckBoxColumn.ElementStyle);
-                    style.Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center));
                     style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
                     dataGridCheckBoxColumn.ElementStyle = style;
 
                     var styleEditing = new Style(typeof(CheckBox), dataGridCheckBoxColumn.EditingElementStyle);
-                    styleEditing.Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center));
                     styleEditing.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
                     dataGridCheckBoxColumn.EditingElementStyle = styleEditing;
                 }
                 else if (column is DataGridComboBoxColumn dataGridComboBoxColumn)
                 {
-                    var style = new Style(typeof(ComboBox));
+                    var style = new Style(typeof(ComboBox), dataGridComboBoxColumn.ElementStyle);
                     style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
                     dataGridComboBoxColumn.ElementStyle = style;
                 }

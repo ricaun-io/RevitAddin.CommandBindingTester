@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Updates
 - Add `DataGridStyleExtension.UpdateDataGridStyle` with auto generated columns size.
 - Add `CreateBindingModel` and update `UpdateDataGridStyle` to center vertical alignment.
+- Update `AutoGeneratingColumn` to use `BaseOn` default style.
 
 [vNext]: ../../compare/1.0.0...HEAD
 [1.0.0]: ../../compare/1.0.0
