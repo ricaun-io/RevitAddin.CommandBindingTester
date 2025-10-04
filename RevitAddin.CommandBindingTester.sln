@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{56154CEC-BEB6-454F-A10F-5F9566909A85}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{751741F2-A320-4885-BC47-BAA10CD71F10}") = "RevitAddin.CommandBindingTester", "RevitAddin.CommandBindingTester\RevitAddin.CommandBindingTester.csproj", "{04A7788C-3E28-4B8D-B717-6AAA909C3F76}"
+EndProject
+Project("{751741F2-A320-4885-BC47-BAA10CD71F10}") = "Build", "Build\Build.csproj", "{B4367FC9-1517-41FB-BECC-7D4B9E3235A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04A7788C-3E28-4B8D-B717-6AAA909C3F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A7788C-3E28-4B8D-B717-6AAA909C3F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A7788C-3E28-4B8D-B717-6AAA909C3F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A7788C-3E28-4B8D-B717-6AAA909C3F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4367FC9-1517-41FB-BECC-7D4B9E3235A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4367FC9-1517-41FB-BECC-7D4B9E3235A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
