@@ -17,12 +17,12 @@ namespace RevitAddin.CommandBindingTester.ViewModels
         #region Constructor
         public BindingViewModel()
         {
-
+            
         }
         #endregion
 
         #region View / Window
-        public string Title { get; set; } = "BindingViewModel";
+        public string Title { get; set; } = "RevitCommand Binding Viewer";
         public BindingView Window { get; private set; }
         public void Show()
         {

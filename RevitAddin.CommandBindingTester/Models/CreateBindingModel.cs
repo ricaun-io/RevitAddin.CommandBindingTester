@@ -4,30 +4,6 @@ using System;
 
 namespace RevitAddin.CommandBindingTester.Models
 {
-    public enum CanExecuteCommand
-    {
-        None,
-        Always,
-        Never,
-        WhenDocument,
-        WhenFamily,
-    }
-
-    public enum BeforeExecutedCommand
-    {
-        None,
-        ShowMessage,
-        ThrowException,
-        Cancel,
-    }
-
-    public enum ExecutedCommand
-    {
-        None,
-        ShowMessage,
-        ThrowException,
-    }
-
     [AddINotifyPropertyChangedInterface]
     public class CreateBindingModel
     {

@@ -12,7 +12,6 @@ namespace RevitAddin.CommandBindingTester.Views
             InitializeComponent();
             InitializeWindow();
             dataGrid.UpdateDataGridStyle();
-            Title = "RevitCommand Binding Viewer";
         }
 
         #region InitializeWindow

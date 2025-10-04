@@ -14,26 +14,117 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
         {
             UIApplication uiapp = commandData.Application;
 
-            // get all postable commands
-            var commands = Enum.GetValues(typeof(PostableCommand))
-                .OfType<PostableCommand>();
+            uiapp.RemoveAllAddInCommandBinding();
 
-            // Force to Remove all Binding in this AddIn
-            foreach (var command in commands)
-            {
-                try
-                {
-                    var revitCommandId = RevitCommandId.LookupPostableCommandId(command);
-                    if (revitCommandId.HasBinding)
-                        uiapp.RemoveAddInCommandBinding(revitCommandId);
-                }
-                catch { }
-            }
-
-            var viewModel = new CreateBindingViewModel();
+            var viewModel = CreateBindingViewModel.Instance;
             var result = viewModel.ShowDialog();
 
+            foreach (var model in viewModel.Models)
+            {
+                CreateAddInCommandBindingForModel(uiapp, model);
+            }
+
             return Result.Succeeded;
+        }
+
+        private static void CreateAddInCommandBindingForModel(UIApplication uiapp, Models.CreateBindingModel model)
+        {
+            if (model.IsEnabled == false)
+                return;
+
+            var command = model.PostableCommand;
+            var revitCommandId = RevitCommandId.LookupPostableCommandId(command);
+
+            try
+            {
+                if (revitCommandId.HasBinding)
+                    uiapp.RemoveAddInCommandBinding(revitCommandId);
+            }
+            catch { }
+
+            var addInCommandBinding = uiapp.CreateAddInCommandBinding(revitCommandId);
+
+            switch (model.CanExecute)
+            {
+                case Models.CanExecuteCommand.Always:
+                    addInCommandBinding.CanExecute += (s, e) =>
+                    {
+                        e.CanExecute = true;
+                    };
+                    break;
+                case Models.CanExecuteCommand.Never:
+                    addInCommandBinding.CanExecute += (s, e) =>
+                    {
+                        e.CanExecute = false;
+                    };
+                    break;
+                case Models.CanExecuteCommand.WhenDocument:
+                    addInCommandBinding.CanExecute += (s, e) =>
+                    {
+                        e.CanExecute = uiapp.ActiveUIDocument?.Document is not null;
+                    };
+                    break;
+                case Models.CanExecuteCommand.WhenFamily:
+                    addInCommandBinding.CanExecute += (s, e) =>
+                    {
+                        var doc = uiapp.ActiveUIDocument?.Document;
+                        e.CanExecute = doc?.IsFamilyDocument == true;
+                    };
+                    break;
+            }
+
+            switch (model.BeforeExecuted)
+            {
+                case Models.BeforeExecutedCommand.ShowMessage:
+                    addInCommandBinding.BeforeExecuted += (s, e) =>
+                    {
+                        System.Windows.MessageBox.Show($"Before Executed: {model.Name} ({model.Id})");
+                    };
+                    break;
+                case Models.BeforeExecutedCommand.ThrowException:
+                    addInCommandBinding.BeforeExecuted += (s, e) =>
+                    {
+                        throw new Exception($"Before Executed Exception: {model.Name} ({model.Id})");
+                    };
+                    break;
+                case Models.BeforeExecutedCommand.Cancel:
+                    addInCommandBinding.BeforeExecuted += (s, e) =>
+                    {
+                        e.Cancel = true;
+                    };
+                    break;
+            }
+
+            switch (model.Executed)
+            {
+                case Models.ExecutedCommand.ShowMessage:
+                    addInCommandBinding.Executed += (s, e) =>
+                    {
+                        System.Windows.MessageBox.Show($"Executed: {model.Name} ({model.Id})");
+                    };
+                    break;
+                case Models.ExecutedCommand.ThrowException:
+                    addInCommandBinding.Executed += (s, e) =>
+                    {
+                        throw new Exception($"Executed Exception: {model.Name} ({model.Id})");
+                    };
+                    break;
+                case Models.ExecutedCommand.TransactionAuthor:
+                    addInCommandBinding.Executed += (s, e) =>
+                    {
+                        var uiapp = s as UIApplication;
+                        if (uiapp?.ActiveUIDocument is null)
+                            return;
+                        var document = uiapp.ActiveUIDocument.Document;
+                        using (var transaction = new Transaction(document, "Change Author"))
+                        {
+                            transaction.Start();
+                            document.ProjectInformation.Author = uiapp.ActiveAddInId.GetAddInName();
+                            transaction.Commit();
+                        }
+                    };
+                    break;
+            }
         }
     }
 }

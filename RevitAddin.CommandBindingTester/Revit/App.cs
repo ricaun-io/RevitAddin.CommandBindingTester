@@ -2,6 +2,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using ricaun.Revit.UI;
 using System;
+using System.Linq;
 
 namespace RevitAddin.CommandBindingTester.Revit
 {
@@ -25,6 +26,9 @@ namespace RevitAddin.CommandBindingTester.Revit
         public Result OnShutdown(UIControlledApplication application)
         {
             ribbonPanel?.Remove();
+
+            application.RemoveAllAddInCommandBinding();
+
             return Result.Succeeded;
         }
     }

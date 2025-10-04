@@ -10,13 +10,11 @@ namespace RevitAddin.CommandBindingTester.Views
     /// </summary>
     public static class DataGridSelectedCellBinding
     {
-        private static object defaultValue = new object();
+        #region SelectedItem
+        private static object defaultValue = new object(); // This is used to force the PropertyChangedCallback event to fire.
         private const string SelectedItemPropertyName = "SelectedItem";
         public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.RegisterAttached(
-                SelectedItemPropertyName,
-                typeof(object),
-                typeof(DataGridSelectedCellBinding),
+            DependencyProperty.RegisterAttached(SelectedItemPropertyName, typeof(object), typeof(DataGridSelectedCellBinding),
                 new FrameworkPropertyMetadata(defaultValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedItemChanged));
         public static object GetSelectedItem(DependencyObject obj) => obj.GetValue(SelectedItemProperty);
         public static void SetSelectedItem(DependencyObject obj, object value) => obj.SetValue(SelectedItemProperty, value);
@@ -55,7 +53,6 @@ namespace RevitAddin.CommandBindingTester.Views
             DependencyProperty.RegisterAttached(SelectedItemIsUpdatingPropertyName, typeof(bool), typeof(DataGridSelectedCellBinding));
         private static bool GetSelectedItemIsUpdating(DependencyObject obj) => (bool)obj.GetValue(SelectedItemIsUpdatingProperty);
         private static void SetSelectedItemIsUpdating(DependencyObject obj, bool value) => obj.SetValue(SelectedItemIsUpdatingProperty, value);
-
         private static void Grid_SelectedCellsChanged(object? sender, SelectedCellsChangedEventArgs e)
         {
             if (sender is not DataGrid grid)
@@ -73,5 +70,6 @@ namespace RevitAddin.CommandBindingTester.Views
                 SetSelectedItemIsUpdating(grid, false);
             }
         }
+        #endregion
     }
 }

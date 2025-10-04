@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add `CreateBindingModel` and update `UpdateDataGridStyle` to center vertical alignment.
 - Update `AutoGeneratingColumn` to use `BaseOn` default style.
 - Add `DataGridSelectedCellBinding` with `SelectedItem` binding for `DataGrid` when `SelectionMode` is `Cell`.
+- Add `CreateCommand` with custom command binding for `CanExecute`, `BeforeExecuted` and `Executed`.
 
 [vNext]: ../../compare/1.0.0...HEAD
 [1.0.0]: ../../compare/1.0.0
