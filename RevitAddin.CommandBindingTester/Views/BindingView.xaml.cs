@@ -12,7 +12,7 @@ namespace RevitAddin.CommandBindingTester.Views
             InitializeComponent();
             InitializeWindow();
             UpdateDataGridWithStyle(dataGrid);
-            Title = "Binding Viewer";
+            Title = "RevitCommand Binding Viewer";
         }
 
         private void UpdateDataGridWithStyle(DataGrid dataGrid)
@@ -35,7 +35,7 @@ namespace RevitAddin.CommandBindingTester.Views
 
             dataGrid.CanUserReorderColumns = true;
             dataGrid.CanUserResizeColumns = true;
-            dataGrid.CanUserSortColumns = false;
+            dataGrid.CanUserSortColumns = true;
             dataGrid.CanUserResizeRows = false;
 
             dataGrid.AutoGenerateColumns = true;
