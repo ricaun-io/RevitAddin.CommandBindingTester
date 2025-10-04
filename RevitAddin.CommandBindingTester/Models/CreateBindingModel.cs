@@ -32,13 +32,14 @@ namespace RevitAddin.CommandBindingTester.Models
     public class CreateBindingModel
     {
         [AlsoNotifyFor(nameof(Name), nameof(Id))]
-        public PostableCommand PostableCommand { get; set; }
+        public PostableCommand PostableCommand { get; set; } = PostableCommand.ThinLines;
         public string Name => GetName();
         public uint Id => GetId();
 
         public CanExecuteCommand CanExecute { get; set; }
         public BeforeExecutedCommand BeforeExecuted { get; set; }
         public ExecutedCommand Executed { get; set; }
+        public bool IsEnabled { get; set; } = false;
 
         private string GetName()
         {

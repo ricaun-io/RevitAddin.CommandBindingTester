@@ -18,10 +18,17 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
             var commands = Enum.GetValues(typeof(PostableCommand))
                 .OfType<PostableCommand>();
 
-            //var models = commands
-            //    .Select(x => Models.CreateBindingModel.Create(x))
-            //    .OrderBy(x => x.Id)
-            //    .ToList();
+            // Force to Remove all Binding in this AddIn
+            foreach (var command in commands)
+            {
+                try
+                {
+                    var revitCommandId = RevitCommandId.LookupPostableCommandId(command);
+                    if (revitCommandId.HasBinding)
+                        uiapp.RemoveAddInCommandBinding(revitCommandId);
+                }
+                catch { }
+            }
 
             var viewModel = new CreateBindingViewModel();
             var result = viewModel.ShowDialog();

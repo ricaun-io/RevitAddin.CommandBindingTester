@@ -8,8 +8,8 @@ namespace RevitAddin.CommandBindingTester.Models
         public PostableCommand PostableCommand { get; internal set; }
         public string Name { get; internal set; }
         public uint Id { get; internal set; }
-        public bool CanHaveBinding { get; internal set; }
-        public bool HasBinding { get; internal set; }
+        public bool CanHaveBinding { get; private set; }
+        public bool HasBinding { get; private set; }
 
         override public string ToString()
         {
