@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace RevitAddin.CommandBindingTester.Views
@@ -32,14 +33,35 @@ namespace RevitAddin.CommandBindingTester.Views
 
             dataGrid.HeadersVisibility = DataGridHeadersVisibility.Column;
 
+            dataGrid.RowHeight = 24;
+
             // Force auto generated columns to fill the available space, except for CheckBox columns
             dataGrid.AutoGeneratingColumn += (s, e) =>
             {
                 var column = e.Column;
-                if (column is DataGridCheckBoxColumn)
-                    return;
 
-                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                if (column is not DataGridCheckBoxColumn)
+                    column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                if (column is DataGridTextColumn dataGridTextColumn)
+                {
+                    var style = new Style(typeof(TextBlock));
+                    style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
+                    dataGridTextColumn.ElementStyle = style;
+                }
+                else if (column is DataGridCheckBoxColumn dataGridCheckBoxColumn)
+                {
+                    var style = new Style(typeof(CheckBox));
+                    style.Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center));
+                    style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
+                    dataGridCheckBoxColumn.ElementStyle = style;
+                }
+                else if (column is DataGridComboBoxColumn dataGridComboBoxColumn)
+                {
+                    var style = new Style(typeof(ComboBox));
+                    style.Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center));
+                    dataGridComboBoxColumn.ElementStyle = style;
+                }
             };
         }
     }

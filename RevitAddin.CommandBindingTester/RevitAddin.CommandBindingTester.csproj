@@ -95,7 +95,7 @@
 
   <ItemGroup>
     <None Include="Revit\App.cs" />
-    <None Include="Revit\Commands\Command.cs" />
+    <None Include="Revit\Commands\ViewerCommand.cs" />
   </ItemGroup>
 
   <ItemGroup>

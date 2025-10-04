@@ -13,7 +13,9 @@ namespace RevitAddin.CommandBindingTester.Revit
         {
             ribbonPanel = application.CreatePanel("CommandBinding");
             ribbonPanel.RowStackedItems(
-                ribbonPanel.CreatePushButton<Commands.Command>("RevitCommand Viewer")
+                ribbonPanel.CreatePushButton<Commands.ViewerCommand>("RevitCommand Viewer")
+                    .SetLargeImage("Resources/Revit.ico"),
+                ribbonPanel.CreatePushButton<Commands.CreateCommand>("RevitCommand Binding")
                     .SetLargeImage("Resources/Revit.ico")
                 );
 

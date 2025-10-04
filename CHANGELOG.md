@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Binding Viewer with all available `PostableCommand` with binding information.
 ### Updates
 - Add `DataGridStyleExtension.UpdateDataGridStyle` with auto generated columns size.
+- Add `CreateBindingModel` and update `UpdateDataGridStyle` to center vertical alignment.
 
 [vNext]: ../../compare/1.0.0...HEAD
 [1.0.0]: ../../compare/1.0.0
