@@ -42,6 +42,12 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
             }
             catch { }
 
+            if (revitCommandId.CanHaveBinding == false)
+            {
+                model.IsEnabled = false;
+                return;
+            }
+
             var addInCommandBinding = uiapp.CreateAddInCommandBinding(revitCommandId);
 
             switch (model.CanExecute)
