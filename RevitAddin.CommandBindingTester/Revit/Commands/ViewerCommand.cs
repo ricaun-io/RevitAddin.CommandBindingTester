@@ -20,6 +20,7 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
 
             var models = commands
                 .Select(x => Models.BindingModel.Create(x))
+                .OfType<Models.BindingModel>()
                 .OrderBy(x => x.Id)
                 .ToList();
 

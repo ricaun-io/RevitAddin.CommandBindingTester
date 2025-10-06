@@ -21,7 +21,14 @@ namespace RevitAddin.CommandBindingTester.Revit.Commands
 
             foreach (var model in viewModel.Models)
             {
-                CreateAddInCommandBindingForModel(uiapp, model);
+                try
+                {
+                    CreateAddInCommandBindingForModel(uiapp, model);
+                }
+                catch
+                {
+                    model.IsEnabled = false;
+                }
             }
 
             return Result.Succeeded;

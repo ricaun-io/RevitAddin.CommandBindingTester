@@ -18,15 +18,22 @@ namespace RevitAddin.CommandBindingTester.Models
 
         public static BindingModel Create(PostableCommand postableCommand)
         {
-            var revitCommandId = RevitCommandId.LookupPostableCommandId(postableCommand);
-            return new BindingModel()
+            try
             {
-                Name = revitCommandId.Name,
-                Id = revitCommandId.Id,
-                PostableCommand = postableCommand,
-                CanHaveBinding = revitCommandId.CanHaveBinding,
-                HasBinding = revitCommandId.HasBinding
-            };
+                var revitCommandId = RevitCommandId.LookupPostableCommandId(postableCommand);
+                return new BindingModel()
+                {
+                    Name = revitCommandId.Name,
+                    Id = revitCommandId.Id,
+                    PostableCommand = postableCommand,
+                    CanHaveBinding = revitCommandId.CanHaveBinding,
+                    HasBinding = revitCommandId.HasBinding
+                };
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
