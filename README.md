@@ -16,7 +16,8 @@ This `RevitAddin` demonstrates how to override existing Revit commands using the
 
 ### References
 
-* [Revit Help - Overriding a Revit command](https://help.autodesk.com/view/RVT/2026/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Advanced_Topics_Commands_html)
+* [Revit API Help - Overriding a Revit command](https://help.autodesk.com/view/RVT/2026/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Advanced_Topics_Commands_html)
+* [Revit API Forum - Wrapping commands inside a CommandBinding](https://forums.autodesk.com/t5/revit-api-forum/wrapping-commands-inside-a-commandbinding/td-p/13814716)
 
 ## Installation
 
