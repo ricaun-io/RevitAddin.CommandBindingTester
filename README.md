@@ -23,7 +23,9 @@ This `RevitAddin` demonstrates how to override existing Revit commands using the
 
 * Download and install [RevitAddin.CommandBindingTester.exe](https://github.com/ricaun-io/RevitAddin.CommandBindingTester/releases/latest/download/RevitAddin.CommandBindingTester.zip)
 
-Or using the [ricaun.AppBundleTool](https://github.com/ricaun-io/ricaun.AppBundleTool) to install/unistall the `RevitAddin.CommandBindingTester.bundle`.
+### AppBundleTool
+
+The [ricaun.AppBundleTool](https://github.com/ricaun-io/ricaun.AppBundleTool) can be used to install/unistall the `RevitAddin.CommandBindingTester.bundle` by downloading it from the latest release.
 
 #### Install
 ```bash
