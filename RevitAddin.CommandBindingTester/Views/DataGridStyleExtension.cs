@@ -4,8 +4,21 @@ using System.Windows.Media;
 
 namespace RevitAddin.CommandBindingTester.Views
 {
+    /// <summary>
+    /// Provides extension methods for styling <see cref="DataGrid"/> controls in WPF.
+    /// </summary>
     public static class DataGridStyleExtension
     {
+        /// <summary>
+        /// Applies a consistent style to the specified <see cref="DataGrid"/>, including grid line brushes,
+        /// selection mode, row backgrounds, column behaviors, and auto-generated column formatting.
+        /// </summary>
+        /// <param name="dataGrid">The <see cref="DataGrid"/> to style.</param>
+        /// <remarks>
+        /// This method sets grid line colors, selection options, disables row addition, enables column reordering,
+        /// resizing, and sorting, and configures auto-generated columns to fill available space except for
+        /// <see cref="DataGridCheckBoxColumn"/>. It also centers content vertically in text, checkbox, and combobox columns.
+        /// </remarks>
         public static void UpdateDataGridStyle(this DataGrid dataGrid)
         {
             var brush = new SolidColorBrush();
