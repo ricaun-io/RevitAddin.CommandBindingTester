@@ -7,6 +7,7 @@
 	xmlns:local="clr-namespace:RevitAddin.CommandBindingTester.Views"
     xmlns:vms="clr-namespace:RevitAddin.CommandBindingTester.ViewModels"
     Title="{Binding Title}"
+    Background="WhiteSmoke"
 	mc:Ignorable="d" 
 	>
 

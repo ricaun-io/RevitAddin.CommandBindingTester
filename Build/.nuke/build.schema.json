@@ -136,6 +136,7 @@
         "Build",
         "Clean",
         "Compile",
+        "GitPreRelease",
         "GitRelease",
         "PackageBuilder",
         "Release",
@@ -243,6 +244,12 @@
         },
         "NewVersions": {
           "type": "boolean"
+        },
+        "PreReleaseFilter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "ProjectNameFolder": {
           "type": "boolean"
