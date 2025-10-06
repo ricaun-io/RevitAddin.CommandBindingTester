@@ -14,9 +14,9 @@ This `RevitAddin` demonstrates how to override existing Revit commands using the
 
 <img width="1864" height="1304" alt="image" src="https://github.com/user-attachments/assets/3220ba06-a8c7-4ba0-9a77-b930bc69f6f5" />
 
-### References - Overriding a Revit command
+### References
 
-* https://help.autodesk.com/view/RVT/2026/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Advanced_Topics_Commands_html
+* [Revit Help - Overriding a Revit command](https://help.autodesk.com/view/RVT/2026/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Advanced_Topics_Commands_html)
 
 ## Installation
 
