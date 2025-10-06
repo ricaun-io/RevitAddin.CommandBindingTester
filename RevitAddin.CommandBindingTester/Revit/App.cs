@@ -15,9 +15,11 @@ namespace RevitAddin.CommandBindingTester.Revit
             ribbonPanel = application.CreatePanel("CommandBinding");
             ribbonPanel.RowStackedItems(
                 ribbonPanel.CreatePushButton<Commands.ViewerCommand>("RevitCommand Viewer")
-                    .SetLargeImage("Resources/Revit.ico"),
+                    .SetLargeImage("Resources/Revit.ico")
+                    .SetToolTip("View all Revit Postable Commands and their binding status"),
                 ribbonPanel.CreatePushButton<Commands.CreateCommand>("RevitCommand Binding")
                     .SetLargeImage("Resources/Revit.ico")
+                    .SetToolTip("Create or remove AddInCommandBinding for Revit Postable Commands")
                 );
 
             return Result.Succeeded;
